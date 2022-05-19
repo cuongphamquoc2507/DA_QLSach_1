@@ -1,0 +1,117 @@
+﻿@model DA_QLSach.Models.Sach
+
+@{
+    ViewBag.Title = "Chi tiết sách";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string ImagePath = "~/wwwroot/images/" + Model.anh;
+}
+
+<br />
+<br />
+<br />
+<br />
+<h1 style="text-align:center">Chi tiết sách</h1>
+<br />
+<br />
+<div></div>
+<nav class="left">
+    <img src="@Url.Content(ImagePath)" atl="" width="200" height="250" class="hover" />
+    
+
+
+    
+</nav>
+<article class="content">
+    <div>
+        <h2 style="font-size:20px">@Html.DisplayFor(model => model.TenSach)</h2>
+        <ul class="menu">
+            @*<li><a>@Html.DisplayFor(model => model.TacGia.TenTG) </a></li>*@
+            <li>Giá: @Html.DisplayFor(model => model.Gia) vnđ</li>
+            <li>Số lượng: @Html.DisplayFor(model => model.SoLuong)</li>
+
+            <li>Chưa Có Đánh Giá </li>
+
+        </ul>
+        @using (Html.BeginForm("ThemGioHang", "GioHang", new { @iMasp = Model.MaSach, @strURL = Request.Url.ToString() }))
+        {
+            <input type="submit" value="Mua hàng" id="bgnGioHang" />
+
+        }
+
+
+        <p>Thông tin thêm: @Html.DisplayFor(model => model.Mota)</p>
+
+        <p>
+            THÔNG TIN & KHUYẾN MÃI
+        </p>
+        <p>Nhập mã CP15 giảm ngay 15K  đơn từ 149.000 VNĐ</p>
+        <p>
+            (Áp dụng từ 6/10-31/10)
+        </p>
+        <p> Freeship ĐH TP.HCM  trên 150.000 VNĐ, Toàn Quốc 250.000 VNĐ</p>
+
+        <p><img src="~/wwwroot/images/hot-icon.gif" width="20" height="20" /> Được kiểm tra hàng và Thanh toán khi nhận hàng.</p>
+        <p> <img src="~/wwwroot/images/hot-icon.gif" width="20" height="20" /> Giao hàng trên Toàn Quốc</p>
+        <p><img src="~/wwwroot/images/hot-icon.gif" width="20" height="20" /> Đặt online hoặc gọi ngay 0963.361.483</p>
+        <p>
+            <img src="~/wwwroot/images/hot-icon.gif" width="20" height="20" /> Chiết khấu cao cho các đại lý và khách đặt sỉ
+        </p>
+        <div class="cleaner_with_height">&nbsp;</div>
+    </div>
+    
+    </article>
+    <div class="right">
+        <h1>Thông tin tác giả</h1>
+
+        <div>
+
+            @{
+                string imagePath = "~/Areas/Asset/images/" + Model.TacGia.Anh;
+
+
+            }
+            <img src="@Url.Content(imagePath)" alt="" width="170" height="150" />
+            <ul>
+                <li>Tên tác giả: @Html.DisplayFor(model => model.TacGia.TenTG)</li>
+                <li> Ngày sinh: @Html.DisplayFor(model => model.TacGia.Ngaysinh)</li>
+                <li> Quê quán: @Html.DisplayFor(model => model.TacGia.Quequan) </li>
+                &nbsp;&nbsp;
+            </ul>
+
+        </div>
+
+    </div>
+    <style>
+        .menu ul {
+            margin-top: 42px;
+        }
+
+        .menu ul li {
+                list-style-type: none;
+                margin-left: 50px;
+            }
+        .left {
+            width: 250px;
+            min-height: 400px;
+          
+            float: left;
+            
+            margin-bottom: 5px;
+        }
+        .content {
+            width: 500px;
+            min-height: 400px;
+         
+            float: left;
+            margin-left: 5px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        .right {
+            width: 300px;
+            min-height: 400px;
+           
+            float: right;
+            margin-bottom: 5px;
+        }
+    </style>

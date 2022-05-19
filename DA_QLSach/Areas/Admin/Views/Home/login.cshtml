@@ -1,0 +1,75 @@
+﻿@model DA_QLSach.Areas.Admin.Data.TaiKhoan
+
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Phạm Quốc Cường - SB Admin</title>
+    <link href="~/Areas/Asset/css/styles.css" rel="stylesheet" />
+
+    <script src="~/Areas/Asset/js/all.min.js"></script>
+
+</head>
+<body class="bg-primary">
+
+    <br />
+    <br />
+    <br />
+
+
+    <div class="row justify-content-md-center">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header" align="center">
+                    <h2>Đăng nhập trang quản lí</h2>
+                    <a>
+
+                        <img src="~/Areas/Asset/images/icon.png" width=100 />
+                    </a>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("login", "Home", FormMethod.Post))
+                    {@Html.AntiForgeryToken()
+                    <form>
+
+                        <div class="form-group">
+                            <label class="small mb-1" for="inputEmailAddress">Tên đăng nhập</label>
+                            <div> @Html.TextBoxFor(m => m.TenDN, "", new { @class = "form-control py-4", @placeholder = " Tên đăng nhập" })</div>
+                            @Html.ValidationMessageFor(model => model.TenDN, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            <label class="small mb-1" for="inputPassword"></label>
+                            Mật khẩu
+                            <div>
+                                @Html.PasswordFor(m => m.MatKhau, new { @class = "form-control py-4", @placeholder = "Mật khẩu" })
+                                @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                            @*<a>Quên tài khoản</a>*@
+                            <a href="/Home/Index">Thoát</a>
+
+                            <input type="submit" name="submit" class="btn btn-primary" value="Đăng nhập" />
+                        </div><a href="@Url.Action("Register", "Home")"> Đăng kí</a>
+                    </form>
+
+                }
+                </div>
+                <p>@ViewBag.error</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

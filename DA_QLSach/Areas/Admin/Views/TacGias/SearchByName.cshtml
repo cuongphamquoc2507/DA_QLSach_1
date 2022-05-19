@@ -1,0 +1,91 @@
+﻿@model PagedList.IPagedList<DA_QLSach.Areas.Admin.Data.TacGia>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "SearchByName";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAD.cshtml";
+}
+
+<p>
+    <button class="nv btn add-new" type="button" data-toggle="tooltip" data-placement="top">
+
+        <i class="fas fa-user-plus"></i>@Html.ActionLink("Thêm", "Create")
+
+    </button>
+</p>
+@using (Html.BeginForm("SearchByName", "TacGias", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+        <div class="input-group">
+            <input class="form-control" type="text" placeholder="Nhập tên tác giả..." aria-label="Search" aria-describedby="basic-addon2" />
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </form>
+}
+<table class="table">
+    <tr>
+        <th>
+            Tên tác giả
+        </th>
+        <th>
+            Ảnh tác giả
+        </th>
+        <th>
+            Ngày sinh
+        </th>
+        <th>
+            Quê quán
+        </th>
+        <th>
+            Tiểu sử
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenTG)
+            </td>
+            <td>
+                @{ //Lấy  đường  dẫn  file  ảnh
+                    string ImagePath = "~/Areas/Asset/images/" + item.Anh;
+                }
+                <img src="@Url.Content(ImagePath)" width="100" class="img-thumbnail" />
+                <br />
+                @Html.DisplayFor(modelItem => item.Anh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ngaysinh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quequan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tieusu)
+            </td>
+            <td>
+                @Html.ActionLink("Sửa", "Edit", new { id = item.MaTG }) |
+                @Html.ActionLink("Chi tiết", "Details", new { id = item.MaTG }) |
+                @Html.ActionLink("Xóa", "Delete", new { id = item.MaTG })
+            </td>
+        </tr>
+    }
+
+</table>
+<div class="end">
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</div>
+<style>
+    .end {
+        float: right;
+    }
+</style>
+
+

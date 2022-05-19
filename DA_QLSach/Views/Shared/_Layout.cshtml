@@ -1,0 +1,242 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Cường Quốc</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel=" stylesheet" href="~/Content/Style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    @using DA_QLSach.Models
+    @RenderSection("scriptslideshow", required: false)
+    <style type="text/css">
+        body {
+            background-color: #F0F0F0;
+        }
+
+        .navbar-inverse {
+            background-color: /*#39B54A*/ #3956b5;
+            border-color: #39B54A;
+        }
+
+        .top_header {
+            background-color: black;
+            padding-left: 110px;
+            color: white;
+        }
+
+        .form-inline {
+            float: right;
+            padding-top: 10px;
+        }
+
+        .navbar-inverse .navbar-nav > li > a {
+            color: white;
+            font-size: x-large;
+        }
+
+        .navbar-inverse .navbar-brand {
+            color: white;
+        }
+
+        .navbar-inverse .navbar-nav > li > a {
+            color: white;
+            font-size: large;
+        }
+
+            .navbar-inverse .navbar-nav > li > a:hover {
+                color: black;
+            }
+
+        .navbar-brand {
+            color: cadetblue;
+        }
+
+        .spnoibat {
+            background-color: white;
+        }
+
+            .spnoibat h3 {
+                padding-left: 30px;
+            }
+
+        .giohang {
+            color: white;
+        }
+        
+    </style>
+
+
+
+</head>
+
+<body>
+
+    @{
+        var u = Session["use"] as DA_QLSach.Models.KhachHang;
+    }
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+
+        <div class="top_header col-md-12" style="float:right">
+
+            <div class="row">
+                @*<div class="col-sm-2"><img class="navbar-brand" src="~/HinhanhSP/logo1.jpg" width="20" height="20" style="padding:0" /></div>*@
+                @{
+                    if (u != null)
+                    {
+                        <div class="col-sm-4 col-md-0">
+                            Xin chào : @u.Email
+                            &nbsp;
+                            @*@Html.ActionLink("ĐĂNG XUẤT", "DangXuat", "User", new { style = "color:red" })*@
+                            <a style="color:red" href="/User/DangXuat"> Đăng xuất</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-sm-4 col-md-0">
+                            <a style="color:white" href="/User/Dangky"> Đăng ký</a>
+                            &nbsp;
+                            <a style="color:white" href="/User/Dangnhap"> Đăng nhập</a>
+                        </div>
+                    }
+                }
+                <div class="col-sm-4 col-md-0" style="padding-left:250px">
+                    @Html.Action("GioHangPartial", "GioHang", new { @class = "giohang" })
+                </div>
+
+            </div>
+
+        </div>
+        <div class="container">
+
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                @Html.ActionLink("Cường Quốc - BOOK ||", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+
+
+
+            </div>
+
+            <div class="navbar-collapse collapse">
+
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="@Url.Action("Index","Home")" title="trangchu">
+                            @*<span><i class=" glyphicon-music "></i></span>*@
+                            <span>TRANG CHỦ</span>
+
+                        </a>
+                        @*<span><i class=" glyphicon-music "></i> </span>
+                            <br />
+                            <span>@Html.ActionLink("Trang chủ", "Index", "Home") </span>*@
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Tacgia","Home")" title="Tacgia">
+                            @*<span><i class="fas fa-tablet"></i></span>*@
+                            <span>TÁC GIẢ</span>
+
+                        </a>
+
+                    </li>
+
+                    <li>
+                        <a href="@Url.Action("Contact","Home")" title="LIENHE">
+                            @*<span><i class="fas fa-headphones"></i></span>*@
+                            <span>LIÊN HỆ</span>
+
+                        </a>
+                    </li>
+                    <li>
+                        <a style="color:white"
+                           class="nav-link"
+                           href="@Url.Action("Index", "DonHangs")">ĐƠN HÀNG</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <div></div>
+    <br/>
+    @RenderSection("slideshow", required: false)
+   
+<div class="container body-content">
+   
+    @RenderBody()
+
+</div>
+
+    <table width=100%>
+        <tr colspan="5" style="text-align:center">
+
+            <td width:100px=width:100px>
+                <img width="100" height="100" src="~/wwwroot/images/icons8-handshake-filled-100.png" class="attachment-medium size-medium" alt="" loading="lazy" />
+                <h3>HỢP TÁC ĐẠI LÝ </h3>
+            </td>
+            <td width:100px=width:100px>
+                <img width="100" height="100" src="~/wwwroot/images/icons8-in-transit-filled-100-1.png" class="attachment-medium size-medium" alt="" loading="lazy" />
+                <h3>Vận Chuyển Toàn Quốc </h3>
+            </td>
+            <td width:100px=width:100px>
+                <img width="100" height="100" src="~/wwwroot/images/icons8-question-mark-96-5.png" class="attachment-medium size-medium" alt="" loading="lazy" />
+                <h3>
+                    HỎI ĐÁP
+                    Mua Hàng Online
+                </h3>
+            </td>
+            <td width:100px=width:100px>
+                <img width="100" height="100" src="~/wwwroot/images/icons8-synchronize-100.png" class="attachment-medium size-medium" alt="" loading="lazy" />
+                <h3>Đổi trả trong 30 ngày </h3>
+            </td>
+        </tr>
+    </table>
+
+    <footer class="bg-info" style="padding-left:50px">
+        <div class="row">
+        
+            <div class="col-md-3 col-sm-6">
+                <h2>Thông tin</h2>
+                <span>Về chúng tôi</span>
+                <br />
+                <span>Liên hệ: 0963361483</span>
+                <br />
+                <span>Góp ý</span>
+                <br />
+                <span>Tra cứu</span>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <h2>Theo dõi</h2>
+                <span><a href="https://www.youtube.com/channel/UC9aQULNIZACk0SCDHbRJZaQ">Kênh youtube</a></span>
+                <br />
+                <span><a href="https://www.facebook.com/cuong.p.quoc.257/">Fanpage</a></span>
+                <br />
+                <span><a href="https://shopee.vn/newshopvn">Shopee</a></span>
+                <br />
+                <span><a href="https://www.facebook.com/pagenewshop">Group</a></span>
+
+            </div>
+        </div>
+        <hr />
+        <center> <p class="bg-primary">&copy; @DateTime.Now.Year - Phạm Quốc Cường</p></center>
+    </footer>
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

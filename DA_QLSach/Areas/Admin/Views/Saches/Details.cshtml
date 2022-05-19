@@ -1,0 +1,62 @@
+﻿@model DA_QLSach.Areas.Admin.Data.Sach
+
+@{
+    ViewBag.Title = "Chi tiết";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAD.cshtml";
+}
+
+
+<h2>Chi tiết sách</h2>
+
+
+
+<table>
+    <tr>
+        <td class="text">Tên tác giả:
+        <td>@Html.DisplayFor(model => model.TacGia.TenTG)</td>
+    </tr>
+    <tr>
+        <td class="text">Tên sách:</td>
+        <td>@Html.DisplayFor(model => model.TenSach)</td>
+    </tr>
+    <tr>
+        <td class="text">Ảnh:</td>
+        <td>
+            @{ //Lấy  đường  dẫn  file  ảnh
+                string ImagePath = "~/wwwroot/images/" + Model.anh;
+
+            }
+            <img src="@Url.Content(ImagePath)" width="100" class="img-thumbnail" />
+            <br />
+        </td>
+    </tr>
+    <tr>
+        <td class="text">Mô tả:</td>
+        <td> @Html.DisplayFor(model => model.Mota)</td>
+    </tr>
+    <tr>
+        <td class="text">Giá:</td>
+        <td> @Html.DisplayFor(model => model.Gia)</td>
+    </tr>
+    <tr>
+        <td class="text">Số lượng</td>
+        <td>  @Html.DisplayFor(model => model.SoLuong)</td>
+    </tr>
+
+</table>
+
+<p class="float-right">
+    @Html.ActionLink("Sửa ", "Edit", new { id = Model.MaSach }) |
+    @Html.ActionLink("Quay lại", "Index")
+</p>
+<style>
+    .text {
+        text-align: center;
+        color: brown;
+        font-size: 20px;
+    }
+
+    .float-right {
+        width: 1000px;
+    }
+</style>

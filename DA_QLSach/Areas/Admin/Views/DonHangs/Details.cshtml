@@ -1,0 +1,50 @@
+﻿@model IEnumerable<DA_QLSach.Areas.Admin.Data.CT_HoaDon>
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAD.cshtml";
+}
+
+<h2>Chi tiết đơn hàng</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Tên sách
+        </th>
+        <th>
+            Số lượng
+        </th>
+        <th>
+            Đơn giá / 1 sản phẩm
+        </th>
+        <th>
+            Thành tiền
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sach.TenSach)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sluong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dongia) .VNĐ
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Thanhtien) .VNĐ
+            </td>
+        </tr>
+    }
+    <tr>
+        <td>
+            <button> @Html.ActionLink("Quay lại", "Index")</button>
+        </td>
+    </tr>
+
+
+</table>

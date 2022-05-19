@@ -1,0 +1,57 @@
+﻿
+@model IEnumerable<DA_QLSach.Models.Sach>
+@{
+    ViewBag.Title = "Tác giả";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="danhmuc">
+    <div id="templatemo_content_right">
+        @{Html.RenderAction("_Nav1", "Home"); }
+        <br/>
+        <div> </div>
+
+        @foreach (var item in Model)
+        {
+
+
+            <div class="col-md-3">
+                
+                <a href="@Url.Action("_Detail","Home", new { id = item.MaSach.ToString().Trim() })">
+                    @{
+                        string ImagePath = "~/wwwroot/images/" + item.anh;
+
+
+                    }
+                    <img src="@Url.Content(ImagePath)" alt="" width="200" height="250" class="hover" title="Xem chi tiết"/>
+                </a>
+                @*<img src="~/wwwroot/images/sach-tao-lap-moi-truong-song-dinh-hinh-nhan-cach-vi-thanh-nien-tap-2.jpg" alt="image" width=100 />*@
+            <div>
+                <p class="p">@Html.DisplayFor(modelItem => item.TenSach)</p>
+                <p> Tên tác giả: @Html.DisplayFor(modelItem => item.TacGia.TenTG)</p>
+                <h4>
+                    @Html.DisplayFor(modelItem => item.Gia) VNĐ
+                    @*<a href="/Shoppingcart/AddtoCart/@item.MaSach" class="cart"><img src="~/wwwroot/images/pixlr-bg-result.png" width="40" height="35" title="Thêm vào giỏ hàng" class="hover" /></a>*@
+                </h4>
+                @using (Html.BeginForm("ThemGioHang", "GioHang", new { @iMasp = item.MaSach, @strURL = Request.Url.ToString() }))
+                {
+                    <input type="submit" value="Mua hàng" id="bgnGioHang" />
+
+                }
+                <div class="detail_button"><a href="@Url.Action("_Detail","Home", new { id = item.MaSach.ToString().Trim() })">Chi tiết</a></div>
+            </div>
+                <div class="cleaner">&nbsp;</div>
+            </div>
+        }
+    </div>
+
+</div>
+<div class="cleaner_with_height">&nbsp;</div>
+
+
+
+<style>
+    #bgnGioHang{
+        background-color:yellow
+    }
+</style>

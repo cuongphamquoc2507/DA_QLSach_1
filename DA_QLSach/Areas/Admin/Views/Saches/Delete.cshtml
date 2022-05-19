@@ -1,0 +1,64 @@
+﻿@model DA_QLSach.Areas.Admin.Data.Sach
+
+@{
+    ViewBag.Title = "XÓA";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAD.cshtml";
+}
+
+
+
+<h3>Bạn có muốn xóa bản ghi này không?</h3>
+<table>
+    <tr>
+        <td class="text">Tên tác giả:
+        <td>@Html.DisplayFor(model => model.TacGia.TenTG)</td>
+    </tr>
+    <tr>
+        <td class="text">Tên sách:</td>
+        <td>@Html.DisplayFor(model => model.TenSach)</td>
+    </tr>
+    <tr>
+        <td class="text">Ảnh:</td>
+        <td>
+            @{ //Lấy  đường  dẫn  file  ảnh
+                string ImagePath = "~/wwwroot/images/" + Model.anh;
+
+            }
+            <img src="@Url.Content(ImagePath)" width="100" class="img-thumbnail" />
+            <br />
+        </td>
+    </tr>
+    <tr>
+        <td class="text">Mô tả:</td>
+        <td> @Html.DisplayFor(model => model.Mota)</td>
+    </tr>
+    <tr>
+        <td class="text">Giá:</td>
+        <td> @Html.DisplayFor(model => model.Gia)</td>
+    </tr>
+    <tr>
+        <td class="text">Số lượng</td>
+        <td>  @Html.DisplayFor(model => model.SoLuong)</td>
+    </tr>
+
+</table>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Xóa" class="btn btn-default" /> |
+        @Html.ActionLink("Quay lại", "Index")
+    </div>
+}
+
+<style>
+    .text {
+        text-align: center;
+        color: brown;
+        font-size: 20px;
+        font-family: CourierThai;
+    }
+</style>

@@ -1,0 +1,88 @@
+﻿@model IEnumerable<DA_QLSach.Models.CT_HoaDon>
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<h2>Details</h2>
+
+    <div>
+        <h4>DonHang</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.KhachHang.TenKH)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.KhachHang.TenKH)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.NgayDat)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NgayDat)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TinhTrang)
+            </dt>
+
+            <dd>
+                <div style="color:red">Đang chờ xác nhận</div>
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.IDHoaDon }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>*@
+
+
+<h2>Chi tiết đơn hàng</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Tên sách
+        </th>
+        <th>
+            Số lượng
+        </th>
+        <th>
+            Đơn giá / 1 sản phẩm
+        </th>
+        <th>
+            Thành tiền
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sach.TenSach)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sluong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dongia) .vnđ
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Thanhtien) .vnđ
+            </td>
+        </tr>
+    }
+    <tr>
+        <td>
+            <button> @Html.ActionLink("Quay lại", "Index")</button>
+        </td>
+    </tr>
+
+
+</table>

@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAD.cshtml";
+}
+
+
+
+@section scriptslideshow{
+
+    <link href="~/wwwroot/slideshow/thumbnail-slider.css" rel="stylesheet" />
+    <script src="~/wwwroot/slideshow/thumbnail-slider.js"></script>
+
+}
+@section slideshow{
+    <div>
+        <div id="thumbnail-slider">
+            <div class="inner">
+                <ul>
+
+                    <li>
+                        <img src="~/wwwroot/images/banner.jpg" width=800 height=300 />
+
+                    </li>
+                    <li>
+                        <img src="~/wwwroot/images/banner2.jpg" width=800 height=300 />
+
+                    </li>
+                    <li>
+                        <img src="~/wwwroot/images/banner3.jpg" width=800 height=300 />
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+}
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid">
+
+            <div class="card mb-4">
+                <div class="card-body">
+                    <p class="mb-0">
+                        <strong>Phạm Quốc Cường</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+

@@ -1,0 +1,57 @@
+﻿@model DA_QLSach.Areas.Admin.Data.TacGia
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAD.cshtml";
+}
+
+
+<h2>Chi tiết</h2>
+
+<table class="tab">
+
+    <tr>
+        <td class="text">Tên tác giả:
+        <td>@Html.DisplayFor(model => model.TenTG)</td>
+    </tr>
+
+    <tr>
+        <td class="text">Ảnh:</td>
+        <td>
+            @{ //Lấy  đường  dẫn  file  ảnh
+                string ImagePath = "~/Areas/Asset/images/" + Model.Anh;
+            }
+            <img src="@Url.Content(ImagePath)" width="100" class="img-thumbnail" />
+            <br />
+        </td>
+    </tr>
+    <tr>
+        <td class="text">Ngày sinh:</td>
+        <td> @Html.DisplayFor(model => model.Ngaysinh)</td>
+    </tr>
+    <tr>
+        <td class="text">Quê quán:</td>
+        <td> @Html.DisplayFor(model => model.Quequan)</td>
+    </tr>
+    <tr>
+        <td class="text">Tiểu sử</td>
+        <td>   @Html.DisplayFor(model => model.Tieusu)</td>
+    </tr>
+
+</table>
+<p>
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.MaTG }) |
+    @Html.ActionLink("Quay lại", "Index")
+</p>
+<style>
+    .text {
+        text-align: center;
+        color: brown;
+        font-size: 20px;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+
+    .tab {
+        margin: initial;
+    }
+</style>

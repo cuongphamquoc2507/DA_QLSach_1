@@ -1,0 +1,59 @@
+﻿@model DA_QLSach.Areas.Admin.Data.TacGia
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAD.cshtml";
+}
+
+
+<h3>Bạn có muốn xóa bản ghi này không?</h3>
+
+<table>
+    <tr>
+        <td class="text">Tên tác giả:
+        <td>@Html.DisplayFor(model => model.TenTG)</td>
+    </tr>
+
+    <tr>
+        <td class="text">Ảnh:</td>
+        <td>
+            @{ //Lấy  đường  dẫn  file  ảnh
+                string ImagePath = "~/Areas/Asset/images/" + Model.Anh;
+            }
+            <img src="@Url.Content(ImagePath)" width="100" class="img-thumbnail" />
+            <br />
+        </td>
+    </tr>
+    <tr>
+        <td class="text">Ngày sinh:</td>
+        <td> @Html.DisplayFor(model => model.Ngaysinh)</td>
+    </tr>
+    <tr>
+        <td class="text">Quê quán:</td>
+        <td> @Html.DisplayFor(model => model.Quequan)</td>
+    </tr>
+    <tr>
+        <td class="text">Tiểu sử</td>
+        <td>   @Html.DisplayFor(model => model.Tieusu)</td>
+    </tr>
+
+</table>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Xóa" class="btn btn-default" /> |
+        @Html.ActionLink("Quay lại", "Index")
+    </div>
+}
+<style>
+    .text {
+        text-align: center;
+        color: brown;
+        font-size: 20px;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+</style>
+
+

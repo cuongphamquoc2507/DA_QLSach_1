@@ -1,0 +1,154 @@
+﻿
+
+@{
+    ViewBag.Title = "Trang chủ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using PagedList.Mvc;
+@model PagedList.IPagedList<DA_QLSach.Models.Sach>
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "BOOK SHOP";
+}
+
+
+@section scriptslideshow{
+
+    <link href="~/wwwroot/slideshow/thumbnail-slider.css" rel="stylesheet" />
+    <script src="~/wwwroot/slideshow/thumbnail-slider.js"></script>
+
+}
+@section slideshow{
+    <div>
+        <div id="thumbnail-slider">
+            <div class="inner">
+                <ul>
+
+                    @*<li>
+
+                            <img src="~/wwwroot/libshow/images/banner1.jpg" width=800 height=300 />
+                        </li>*@
+
+                    <li>
+                        <img src="~/wwwroot/images/banner.jpg" width=800 height=300 />
+
+                    </li>
+                    <li>
+                        <img src="~/wwwroot/images/banner2.jpg" width=800 height=300 />
+
+                    </li>
+                    <li>
+                        <img src="~/wwwroot/images/banner3.jpg" width=800 height=300 />
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+}
+<div class="spnoibat">
+    <div class="row">
+
+        <h3> SÁCH NỔI BẬT</h3>
+        <div class="col-md-3">
+
+            <img src="~/wwwroot/images/concao.jpg" class="img-responsive" alt="" width="250" />
+        </div>
+        <div class="col-md-3">
+
+            <img src="~/wwwroot/images/cugiai.jpg" class="img-responsive" alt="" width="250" />
+        </div>
+        <div class="col-md-3">
+
+            <img src="~/wwwroot/images/giokhoai.jpg" class="img-responsive" alt="" width="250" />
+        </div>
+        <div class="col-md-3">
+
+            <img src="~/wwwroot/images/kimnguu.jpg" class="img-responsive" alt="" width="250" />
+        </div>
+    </div>
+</div>
+
+<br />
+<div class="search-form">
+
+    @using (Html.BeginForm("SearchByName", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <input type="text" placeholder="Tìm kiếm..." name="name" />
+        <button type="submit" class="btn btn-default" style="background-color:rgba(0, 0, 255, 0.50);"><i class=" fa fa-search"></i></button>
+    }
+
+</div>
+<div class="danhmuc">
+    <div id="templatemo_content_right">
+
+        <div class="search-form">
+
+
+        </div>
+        <br />
+
+        @foreach (var item in Model)
+        {
+
+
+            <div class="col-md-3">
+
+                <a href="@Url.Action("_Detail","Home", new { id = item.MaSach.ToString().Trim() })">
+                    @{
+                        string ImagePath = "~/wwwroot/images/" + item.anh;
+
+
+                    }
+                    <img src="@Url.Content(ImagePath)" alt="" width="200" height="250" class="hover" />
+                </a>
+                <div></div>
+                <br />
+                @*<img src="~/wwwroot/images/sach-tao-lap-moi-truong-song-dinh-hinh-nhan-cach-vi-thanh-nien-tap-2.jpg" alt="image" width=100 />*@
+                <div class="product_info">
+                    <p class="p">@Html.DisplayFor(modelItem => item.TenSach)</p>
+                    <h2>
+                        @Html.DisplayFor(modelItem => item.Gia) VNĐ
+                        @*<a href="/Shoppingcart/AddtoCart/@item.MaSach" class="cart"><img src="~/wwwroot/images/pixlr-bg-result.png" width="40" height="35" title="Thêm vào giỏ hàng" class="hover" /></a>*@
+                    </h2>
+                    @using (Html.BeginForm("ThemGioHang", "GioHang", new { @iMasp = item.MaSach, @strURL = Request.Url.ToString() }))
+                    {
+                        <input type="submit" value="Mua hàng" id="bgnGioHang" style="background-color:yellow" />
+
+                    }
+
+                    <a href="@Url.Action("_Detail","Home", new { id = item.MaSach.ToString().Trim() })">Chi tiết</a>
+                </div>
+                <div class="cleaner">&nbsp;</div>
+            </div>
+
+
+        }
+    </div>
+
+</div>
+<div class="cleaner_with_height">&nbsp;</div>
+
+
+<div class="end">
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentFilter = ViewBag.CurrentFilter }))
+</div>
+
+<style>
+    p {
+        font-size: 12px
+    }
+
+    .hover:hover {
+        transform: scale(1.2);
+    }
+
+    .end {
+        float: right;
+        color-interpolation: auto;
+        color: black;
+        text-align: right;
+    }
+</style>

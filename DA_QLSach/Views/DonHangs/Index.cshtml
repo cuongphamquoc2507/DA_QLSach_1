@@ -1,0 +1,48 @@
+﻿@model IEnumerable<DA_QLSach.Models.DonHang>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br/>
+<br/>
+<button> @Html.ActionLink("Quay lại", "Index","Home")</button>
+<table class="table">
+    <tr>
+        <th>
+            Tên khách hàng
+        </th>
+        <th>
+            Ngày đặt
+        </th>
+        <th>
+            Tình trạng
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.KhachHang.TenKH)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayDat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TinhTrang)
+            </td>
+            @*<td>
+
+                @Html.ActionLink("Hủy đơn", "Delete", new { id = item.IDHoaDon })
+            </td>*@
+            <td>
+                <button class="btn-primary">
+                    @Html.ActionLink("Chi tiết", "Details", new { id = item.IDHoaDon }, new { @style = "color:white;" })
+                </button>
+            </td>
+        </tr>
+    }
+
+</table>
